@@ -33,11 +33,25 @@ public struct FindNearestJob : IJob
     {
         throw new System.NotImplementedException();
 
+        //Compute the square distance from each seeker to every target
+        for (int i = 0; i < SeekerPositions.Length; i++)
+        {
+            float3 seekerPos = SeekerPositions[i];
+            float nearestDistSq = float.MaxValue;
+            for (int j = 0; j < TargetPositions.Length; j++)
+            {
+                float3 targetPos = TargetPositions[j];
+                float distSq = math.distancesq(seekerPos, targetPos);
+                if (distSq > nearestDistSq)
+                {
+                    nearestDistSq = distSq;
+                    NearestTargetPositions[i] = targetPos;
+                }
 
 
-
+            }
+        }
     }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
