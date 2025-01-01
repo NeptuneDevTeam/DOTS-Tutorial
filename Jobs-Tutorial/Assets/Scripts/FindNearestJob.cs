@@ -19,21 +19,19 @@ public struct FindNearestJob : IJob
     // Although not strictly necessary in this case, marking data  
     // as ReadOnly may allow the job scheduler to safely run 
     // more jobs concurrently with each other.
+
     [ReadOnly] public NativeArray<float3> TargetPositions;
     [ReadOnly] public NativeArray<float3> SeekerPositions;
 
     // For SeekerPositions[i], we will assign the nearest 
     // target position to NearestTargetPositions[i].
-
     public NativeArray<float3> NearestTargetPositions;
 
     // 'Execute' is the only method of the IJob interface.
     // When a worker thread executes the job, it calls this method.
     public void Execute()
     {
-        throw new System.NotImplementedException();
-
-        //Compute the square distance from each seeker to every target
+        // Compute the square distance from each seeker to every target.
         for (int i = 0; i < SeekerPositions.Length; i++)
         {
             float3 seekerPos = SeekerPositions[i];
@@ -42,25 +40,12 @@ public struct FindNearestJob : IJob
             {
                 float3 targetPos = TargetPositions[j];
                 float distSq = math.distancesq(seekerPos, targetPos);
-                if (distSq > nearestDistSq)
+                if (distSq < nearestDistSq)
                 {
                     nearestDistSq = distSq;
                     NearestTargetPositions[i] = targetPos;
                 }
-
-
             }
         }
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
