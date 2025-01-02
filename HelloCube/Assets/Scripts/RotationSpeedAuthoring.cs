@@ -5,6 +5,8 @@ using Unity.Mathematics;
 public struct RotationSpeed : IComponentData
 {
     public float RadiansPerSecond;  // how quickly the entity rotates 
+
+    public static object ValueRO { get; internal set; }
 }
 public class RotationSpeedAuthoring : MonoBehaviour
 {
