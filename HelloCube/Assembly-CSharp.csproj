@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CubeRotationSystem.cs" />
+    <Compile Include="Assets\Scripts\SpawnerAuthoring.cs" />
     <Compile Include="Assets\Scripts\RotationSpeedAuthoring.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
   </ItemGroup>
