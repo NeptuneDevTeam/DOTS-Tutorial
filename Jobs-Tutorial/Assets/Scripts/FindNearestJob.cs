@@ -8,7 +8,7 @@ using Unity.Mathematics;
 
 // Include the BurstCompile attribute to Burst compile the job.
 [BurstCompile]
-public struct FindNearestJob : IJob
+public struct FindNearestJob : IJobParallelFor
 {
     // All of the data which a job will access should 
     // be included in its fields. In this case, the job needs
@@ -31,21 +31,31 @@ public struct FindNearestJob : IJob
     // When a worker thread executes the job, it calls this method.
     public void Execute()
     {
-        // Compute the square distance from each seeker to every target.
-        for (int i = 0; i < SeekerPositions.Length; i++)
-        {
-            float3 seekerPos = SeekerPositions[i];
-            float nearestDistSq = float.MaxValue;
-            for (int j = 0; j < TargetPositions.Length; j++)
-            {
-                float3 targetPos = TargetPositions[j];
-                float distSq = math.distancesq(seekerPos, targetPos);
-                if (distSq < nearestDistSq)
-                {
-                    nearestDistSq = distSq;
-                    NearestTargetPositions[i] = targetPos;
-                }
-            }
-        }
+        //// Compute the square distance from each seeker to every target.
+        //for (int i = 0; i < SeekerPositions.Length; i++)
+        //{
+        //    float3 seekerPos = SeekerPositions[i];
+        //    float nearestDistSq = float.MaxValue;
+        //    for (int j = 0; j < TargetPositions.Length; j++)
+        //    {
+        //        float3 targetPos = TargetPositions[j];
+        //        float distSq = math.distancesq(seekerPos, targetPos);
+        //        if (distSq < nearestDistSq)
+        //        {
+        //            nearestDistSq = distSq;
+        //            NearestTargetPositions[i] = targetPos;
+        //        }
+        //    }
+        //}
+    }
+
+    // An IJobParallelFor's Execute() method takes an index parameter and 
+    // is called once for each index, from 0 up to the index count:
+
+    public void Execute(int index)
+    {
+        throw new System.NotImplementedException();
+
+
     }
 }
