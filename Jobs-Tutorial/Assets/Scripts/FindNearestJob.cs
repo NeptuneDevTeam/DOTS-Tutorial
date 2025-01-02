@@ -56,6 +56,19 @@ public struct FindNearestJob : IJobParallelFor
     {
         throw new System.NotImplementedException();
 
+        float3 seekerPos = SeekerPositions[index];
+        float nearestDistSq = float.MaxValue;
+        for (int i = 0; i < TargetPositions.Length; i++)
+        {
+            float3 targetPos = TargetPositions[i];
+            float distSq = math.distancesq(seekerPos, targetPos);
+            if (distSq < nearestDistSq)
+            {
+                nearestDistSq = distSq;
+                NearestTargetPositions[i] = targetPos;
+            }
 
+
+        }
     }
 }
