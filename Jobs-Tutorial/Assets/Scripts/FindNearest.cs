@@ -56,7 +56,7 @@ public class FindNearest : MonoBehaviour
         };
 
         // Schedule() puts the job instance on the job queue.
-        JobHandle findHandle = findJob.Schedule();
+        JobHandle findHandle = findJob.Schedule(SeekerPositions.Length, 100);
 
         // The Complete method will not return until the job represented by
         // the handle finishes execution. Effectively, the main thread waits

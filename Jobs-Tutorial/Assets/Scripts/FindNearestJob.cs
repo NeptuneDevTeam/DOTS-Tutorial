@@ -65,7 +65,7 @@ public struct FindNearestJob : IJobParallelFor
             if (distSq < nearestDistSq)
             {
                 nearestDistSq = distSq;
-                NearestTargetPositions[i] = targetPos;
+                NearestTargetPositions[index] = targetPos;
             }
 
 
