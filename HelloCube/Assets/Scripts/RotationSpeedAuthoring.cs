@@ -1,16 +1,27 @@
 using UnityEngine;
+using Unity.Entities;
+using Unity.Mathematics;
 
+public struct RotationSpeed : IComponentData
+{
+    public float RadiansPerSecond;  // how quickly the entity rotates 
+}
 public class RotationSpeedAuthoring : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public float DegreesPerSecond = 360.0f;
+}
 
-    // Update is called once per frame
-    void Update()
+class RotationSpeedBaker : Baker<RotationSpeedAuthoring>
+{
+    public override void Bake(RotationSpeedAuthoring authoring)
     {
-        
+        var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
+
+        var rotationSpeed = new RotationSpeed
+        {
+            RadiansPerSecond = math.radians(authoring.DegreesPerSecond)
+        };
+
+        AddComponent(entity, rotationSpeed);
     }
 }
