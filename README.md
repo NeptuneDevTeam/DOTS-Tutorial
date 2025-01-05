@@ -23,4 +23,4 @@ By the end of this course, you will be able to:
 ## Getting Started
 1. Clone the repository to your local machine:
    ```bash
-   git clone [https://github.com/NeptuneDevTeam/DOTS-Tutorial.git]
+   git clone https://github.com/NeptuneDevTeam/DOTS-Tutorial.git
