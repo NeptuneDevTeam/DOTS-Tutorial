@@ -9,7 +9,8 @@ public partial struct SpawnSystem : ISystem
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        state.RequireForUpdate<Spawner>();
+
+        //state.RequireForUpdate<Spawner>();
     }
 
     [BurstCompile]
@@ -18,17 +19,21 @@ public partial struct SpawnSystem : ISystem
         state.Enabled = false;
 
         // ...we’ll add code to spawn the prefab here in a moment
-        var prefab = SystemAPI.GetSingleton<Spawner>().CubePrefab;
-        var instances = state.EntityManager.Instantiate(prefab, 10, Allocator.Temp);
+
+        //var prefab = SystemAPI.GetSingleton<Spawner>().CubePrefab;
+        //var instances = state.EntityManager.Instantiate(prefab, 10, Allocator.Temp);
 
         // randomly set the positions of the new cubes
         // (we'll use a fixed seed, 123, but if you want different randomness 
         // for each run, you can instead use the elapsed time value as the seed)
         var random = new Random(123);
-        foreach (var entity in instances)
+        //foreach (var entity in instances)
         {
-            var transform = SystemAPI.GetComponentRW<LocalTransform>(entity);
-            transform.ValueRW.Position = random.NextFloat3(new float3(10, 10, 10));
+            //var transform = SystemAPI.GetComponentRW<LocalTransform>(entity);
+            //transform.ValueRW.Position = random.NextFloat3(new float3(10, 10, 10));
+
+
+            //Need to fix Update methods. 
         }
     }
 }
